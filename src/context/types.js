@@ -1,9 +1,12 @@
 export const GET_QUESTIONS = 'GET_QUESTIONS';
+export const CLEAR_QUESTIONS = 'CLEAR_QUESTIONS';
 export const SET_CORRECT_ANSWERS = 'SET_CORRECT_ANSWERS';
 export const SET_INCORRECT_ANSWERS = 'SET_INCORRECT_ANSWERS';
 export const SET_TIMER = 'SET_TIMER';
 export const STOP_TIMER = 'STOP_TIMER';
 export const SET_SCORE = 'SET_SCORE';
+export const SET_TOPIC = 'SET_TOPIC';
+export const SET_DIFFICULTY = 'SET_DIFFICULTY';
 
 export const GET_USERS = 'GET_USERS';
 export const SAVE_USER = 'SAVE_USER';

@@ -1,10 +1,13 @@
 import {
   GET_QUESTIONS,
+  CLEAR_QUESTIONS,
   SET_CORRECT_ANSWERS,
   SET_INCORRECT_ANSWERS,
   SET_SCORE,
   SET_TIMER,
   STOP_TIMER,
+  SET_TOPIC,
+  SET_DIFFICULTY,
 } from '../types';
 
 export default (state, action) => {
@@ -12,6 +15,11 @@ export default (state, action) => {
 
   switch (type) {
     case GET_QUESTIONS:
+      return {
+        ...state,
+        questions: payload,
+      };
+    case CLEAR_QUESTIONS:
       return {
         ...state,
         questions: payload,
@@ -34,12 +42,22 @@ export default (state, action) => {
     case STOP_TIMER:
       return {
         ...state,
-        questions: payload,
+        scoreTime: payload,
       };
     case SET_SCORE:
       return {
         ...state,
         score: payload,
+      };
+    case SET_TOPIC:
+      return {
+        ...state,
+        topic: payload,
+      };
+    case SET_DIFFICULTY:
+      return {
+        ...state,
+        difficulty: payload,
       };
 
     default:

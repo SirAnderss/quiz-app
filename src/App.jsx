@@ -4,7 +4,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import Questions from './components/Questions';
+import Quiz from './components/Quiz';
 import ScoreBoard from './components/ScoreBoard';
 
 function App() {
@@ -13,7 +13,8 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={ScoreBoard} />
-          <Route path="/:user" exact component={Questions} />
+          <Route path="/finish" exact component={ScoreBoard} />
+          <Route path="/:user" exact component={Quiz} />
           <Redirect to="/" />
         </Switch>
       </Router>

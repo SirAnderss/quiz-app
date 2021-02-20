@@ -11,14 +11,19 @@ const QuestionState = (props) => {
     questions: [],
     correctAnswers: [],
     incorrectAnswers: [],
-    timer: null,
+    timer: '',
+    scoreTime: '',
     score: 0,
+    topic: 0,
+    difficulty: '',
   };
 
   const [state, dispatch] = useReducer(QuestionReducer, initialState);
 
-  const getQuestions = (category, difficulty) => {
-    fetch(`${url}&category=${category}&difficulty=${difficulty}&type=multiple`)
+  const getQuestions = () => {
+    fetch(
+      `${url}&category=${state.topic}&difficulty=${state.difficulty}&type=multiple`
+    )
       .then((response) => response.json())
       .catch((e) => console.error('Error', e))
       .then((data) => {
@@ -62,6 +67,13 @@ const QuestionState = (props) => {
       });
   };
 
+  const clearQuestions = () => {
+    dispatch({
+      type: 'CLEAR_QUESTIONS',
+      payload: [],
+    });
+  };
+
   const setScore = () => {
     dispatch({
       type: 'SET_SCORE',
@@ -78,19 +90,47 @@ const QuestionState = (props) => {
     });
   };
 
-  const stopCounter = () => {
+  const updateUser = async (answer) => {
     let time = new Date();
+    let counter = formatTime(time - state.timer);
+
+    const localUser = JSON.parse(localStorage.getItem('user'));
+
+    const updatedScore = state.correctAnswers.includes(answer)
+      ? state.score + 1
+      : state.score;
+
+    let user = {
+      name: localUser.name,
+      score: updatedScore,
+      time: counter,
+    };
 
     dispatch({
       type: 'STOP_TIMER',
-      payload: formatTime(time - state.timer),
+      payload: counter,
     });
 
-    updateUser();
+    const docRef = db.collection('profiles').doc(localUser.id);
+
+    await docRef
+      .update(user)
+      .then(() => console.log('updated'))
+      .catch((e) => console.error(e));
   };
 
-  const updateUser = () => {
-    const user = localStorage.getItem(JSON.parse('user'));
+  const setTopic = (category) => {
+    dispatch({
+      type: 'SET_TOPIC',
+      payload: category,
+    });
+  };
+
+  const setDifficulty = (val) => {
+    dispatch({
+      type: 'SET_DIFFICULTY',
+      payload: val,
+    });
   };
 
   return (
@@ -99,10 +139,16 @@ const QuestionState = (props) => {
         questions: state.questions,
         correctAnswers: state.correctAnswers,
         incorrectAnswers: state.incorrectAnswers,
+        score: state.score,
         timer: state.timer,
+        topic: state.topic,
+        difficulty: state.diffuculty,
         getQuestions,
+        clearQuestions,
         setScore,
-        stopCounter,
+        updateUser,
+        setTopic,
+        setDifficulty,
       }}
     >
       {props.children}
