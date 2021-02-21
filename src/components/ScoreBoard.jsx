@@ -3,6 +3,7 @@ import { useRouteMatch } from 'react-router-dom';
 import UserState from '../context/user/UserState';
 import UserList from './users/UserList';
 import User from './users/User';
+import Congrats from './Congrats';
 
 function ScoreBoard() {
   const match = useRouteMatch({
@@ -13,9 +14,9 @@ function ScoreBoard() {
 
   return (
     <UserState>
-      <div className="">
+      <div className="w-full h-screen justify-center items-center">
         <UserList />
-        {!match ? <User /> : null}
+        {!match ? <User /> : <Congrats />}
       </div>
     </UserState>
   );
