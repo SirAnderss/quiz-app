@@ -14,8 +14,13 @@ function Question({ question, last, next }) {
     setAnswers(question.answers.sort(() => Math.random() - 0.5));
 
   const endQuiz = (answer) => {
+    const localUser = localStorage.getItem('user');
     updateUser(answer);
-    localStorage.removeItem('user');
+
+    if (localUser) {
+      localStorage.removeItem('user');
+    }
+
     history.push('/finish');
   };
 
