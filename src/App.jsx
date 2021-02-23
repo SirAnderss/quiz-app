@@ -15,7 +15,6 @@ function App() {
           <Route path="/" exact component={ScoreBoard} />
           <Route path="/finish" exact component={ScoreBoard} />
           <Route path="/:user" exact component={Quiz} />
-          <Redirect to="/" />
         </Switch>
       </Router>
     </div>

@@ -1,4 +1,4 @@
-import { GET_USERS, SAVE_USER, SET_USER, UPDATE_USER } from '../types';
+import { GET_USERS, SAVE_USER, SET_USER } from '../types';
 
 export default (state, action) => {
   const { payload, type } = action;
@@ -20,12 +20,6 @@ export default (state, action) => {
       return {
         ...state,
         users: payload,
-      };
-
-    case UPDATE_USER:
-      return {
-        ...state,
-        user: payload,
       };
 
     default:

@@ -12,7 +12,8 @@ const UserState = (props) => {
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
   const getUsers = async () => {
-    db.collection('profiles')
+    await db
+      .collection('profiles')
       .limit(5)
       .orderBy('score', 'desc')
       .get()
@@ -63,10 +64,6 @@ const UserState = (props) => {
       });
   };
 
-  const updateUser = async (data) => {
-    console.log(data);
-  };
-
   return (
     <UserContext.Provider
       value={{
@@ -75,7 +72,6 @@ const UserState = (props) => {
         getUsers,
         setUser,
         saveUser,
-        updateUser,
       }}
     >
       {props.children}

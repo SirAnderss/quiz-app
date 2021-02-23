@@ -47,72 +47,45 @@ function QuizList({ user }) {
 
   return (
     <div>
-      <div className="py-6 w-full fixed flex justify-around uppercase font-bold text-xl bg-white text-gray-600 border-b-2 shadow-lg z-50">
+      <div className="nav-bar">
         <span>{user}</span>
         <span>Score: {score}</span>
       </div>
       {!topic ? (
-        <div className="px-8 py-20 mx-auto sm:w-5/6 sm:h-auto sm:items-stretch sm:py-4 sm:pt-24 md:h-screen md:items-center md:max-w-md md:py-40 lg:py-28 h-screen flex flex-wrap items-center justify-around">
-          <div
-            onClick={() => setTopic(15)}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+        <div className="topic">
+          <div onClick={() => setTopic(15)} className="option">
             Video Games
           </div>
-          <div
-            onClick={() => setTopic(18)}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+          <div onClick={() => setTopic(18)} className="option">
             Computing
           </div>
-          <div
-            onClick={() => setTopic(10)}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+          <div onClick={() => setTopic(10)} className="option">
             Books
           </div>
-          <div
-            onClick={() => setTopic(31)}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+          <div onClick={() => setTopic(31)} className="option">
             Manga and Anime
           </div>
-          <div
-            onClick={() => setTopic(23)}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+          <div onClick={() => setTopic(23)} className="option">
             History
           </div>
-          <div
-            onClick={() => setTopic(11)}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+          <div onClick={() => setTopic(11)} className="option">
             Movies
           </div>
         </div>
       ) : !quiz ? (
-        <div className="px-8 py-20 mx-auto sm:w-5/6 sm:items-center sm:h-screen sm:justify-around sm:py-4 sm:pt-24 sm:flex-row h-screen flex flex-col items-center justify-around">
-          <div
-            onClick={() => setQuestions('easy')}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+        <div className="difficulty">
+          <div onClick={() => setQuestions('easy')} className="option">
             Easy
           </div>
-          <div
-            onClick={() => setQuestions('medium')}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+          <div onClick={() => setQuestions('medium')} className="option">
             Medium
           </div>
-          <div
-            onClick={() => setQuestions('hard')}
-            className="w-36 h-36 p-4 text-center text-xl font-semibold text-white flex items-center justify-center bg-green-500 border-2 rounded-xl transform hover:scale-110 transition duration-200 delay-150 cursor-pointer"
-          >
+          <div onClick={() => setQuestions('hard')} className="option">
             Hard
           </div>
         </div>
       ) : questions ? (
-        <div className="">
+        <div>
           <Slider ref={slider} {...settings}>
             {questions.map((item, key) => (
               <Question
@@ -123,8 +96,8 @@ function QuizList({ user }) {
               />
             ))}
           </Slider>
-          <div className="w-full -mt-8 md:-mt-48 lg:-mt-24 text-center">
-            <button onClick={() => clearTopic()} className="mb-8 py-3 px-5 text-xl text-white rounded-lg shadow-xl transform hover:scale-105 transition duration-200 delay-150 bg-blue-600">
+          <div className="topic-button">
+            <button onClick={() => clearTopic()} className="btn">
               Change topic
             </button>
           </div>

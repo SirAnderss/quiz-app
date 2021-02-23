@@ -12,11 +12,11 @@ function Congrats() {
   return (
     <div>
       {users.length > 0 ? (
-        <div className="w-full flex flex-col text-4xl text-gray-700 my-8 text-center font-bold">
+        <div className="congrats">
           Congrats
           <Link
             to="/"
-            className="mt-12 text-lg font-semibold tracking-widest text-gray-900 uppercase dark-mode:text-white focus:outline-none focus:shadow-outline"
+            className="link"
           >
             Go Home
           </Link>

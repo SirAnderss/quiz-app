@@ -14,7 +14,7 @@ function ScoreBoard() {
 
   return (
     <UserState>
-      <div className="w-full h-screen justify-center items-center">
+      <div className="w-full h-screen">
         <UserList />
         {!match ? <User /> : <Congrats />}
       </div>

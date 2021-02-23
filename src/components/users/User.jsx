@@ -27,8 +27,8 @@ function User() {
   return (
     <>
       {users.length > 0 ? (
-        <div className="w-5/6 mt-4 mx-auto max-h-32 flex flex-col items-center uppercase">
-          <h1 className="text-2xl text-center text-gray-700">
+        <div className="user">
+          <h1 className="user-title">
             Welcome {user.name}
           </h1>
           <input
@@ -37,12 +37,9 @@ function User() {
             onChange={handleOnChange}
             autoComplete="off"
             required
-            className="mt-4 border border-gray-400 py-3 px-6 rounded-xl text-center text-gray-700 focus:text-green-500 focus:border-green-500"
+            className="input"
           />
-          <button
-            onClick={handleClick}
-            className="mt-8 py-3 px-6 text-xl text-white rounded-lg shadow-xl transform hover:scale-105 transition duration-200 delay-150 bg-green-500"
-          >
+          <button onClick={handleClick} className="btn">
             Start
           </button>
           <ToastContainer />

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import QuestionContext from '../../context/questions/QuestionContext';
 import clearText from '../../resources/clearText';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 function Question({ question, last, next }) {
   const { score, correctAnswers, setScore, updateUser } = useContext(
@@ -15,12 +15,9 @@ function Question({ question, last, next }) {
 
   const endQuiz = (answer) => {
     updateUser(answer);
-    history.push("/finish");
+    localStorage.removeItem('user');
+    history.push('/finish');
   };
-
-  useEffect(() => {
-    sortAnswers();
-  }, []);
 
   const checkAnswer = (answer) => {
     const correct = correctAnswers.includes(answer);
@@ -30,14 +27,16 @@ function Question({ question, last, next }) {
     }
   };
 
+  useEffect(() => {
+    sortAnswers();
+  }, []);
+
   return (
-    <div className="flex h-screen mt-20 justify-center items-center">
+    <div className="question">
       {last ? (
-        <div className="flex flex-col items-center ">
-          <div className="text-3xl my-12 px-8 w-full text-center">
-            {clearText(question.question)}
-          </div>
-          <div className="max-w-lg py-8 flex justify-center flex-wrap bg-green-400">
+        <div className="question-container">
+          <div className="question-header">{clearText(question.question)}</div>
+          <div className="answers-container">
             {answers.map((item, key) => (
               <div
                 key={key}
@@ -46,7 +45,7 @@ function Question({ question, last, next }) {
                   next();
                   endQuiz(item);
                 }}
-                className="text-xl w-36 h-36 p-2 flex items-center justify-center text-center cursor-pointer rounded-md shadow-xl transform hover:scale-110 transition duration-300 delay-100 bg-white text-gray-600 m-4"
+                className="answers"
               >
                 {clearText(item)}
               </div>
@@ -55,11 +54,11 @@ function Question({ question, last, next }) {
         </div>
       ) : (
         <div>
-          <div className="w-full h-5/6 flex flex-col items-center ">
-            <div className="text-3xl my-8 px-8 w-full text-center">
+          <div className="question-container ">
+            <div className="question-header">
               {clearText(question.question)}
             </div>
-            <div className="max-w-lg py-8 flex justify-center flex-wrap bg-green-400">
+            <div className="answers-container">
               {answers.map((item, key) => (
                 <div
                   key={key}
@@ -67,7 +66,7 @@ function Question({ question, last, next }) {
                     checkAnswer(item);
                     next();
                   }}
-                  className="text-xl w-36 h-36 p-2 flex items-center justify-center text-center cursor-pointer rounded-md shadow-xl transform hover:scale-110 transition duration-300 delay-100 bg-white text-gray-600 m-4"
+                  className="answers"
                 >
                   {clearText(item)}
                 </div>

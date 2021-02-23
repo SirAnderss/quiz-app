@@ -12,26 +12,22 @@ function UserList() {
   return (
     <>
       {users.length > 0 ? (
-        <div className="w-full md:max-w-md mx-auto flex flex-col items-center pt-12">
-          <h1 className="text-5xl text-gray-700">Score Board</h1>
-          <table className="w-10/12 mx-auto rounded-lg overflow-hidden shadow-2xl my-5">
-            <thead className="text-white bg-green-400 mb-2">
-              <td className="p-3 text-left">Name</td>
-              <td className="p-3 text-left">Score</td>
-              <td className="p-3 text-left">Time</td>
+        <div className="user-container">
+          <h1 className="score-header">Score Board</h1>
+          <table className="tbl-table">
+            <thead className="table-header-row">
+              <tr>
+                <td className="table-header-col">Name</td>
+                <td className="table-header-col">Score</td>
+                <td className="table-header-col">Time</td>
+              </tr>
             </thead>
             <tbody className="">
               {users.map((item, key) => (
-                <tr key={key} className="mb-2 border-grey-light border">
-                  <td className="border-grey-light border hover:bg-gray-100 p-3 text-green-400 hover:text-green-600 hover:font-medium cursor-pointer">
-                    {item.name}
-                  </td>
-                  <td className="border-grey-light border hover:bg-gray-100 p-3 text-green-400 hover:text-green-600 hover:font-medium cursor-pointer text-right">
-                    {item.score}
-                  </td>
-                  <td className="border-grey-light border hover:bg-gray-100 p-3 text-green-400 hover:text-green-600 hover:font-medium cursor-pointer text-right">
-                    {item.time}
-                  </td>
+                <tr key={key} className="table-body-row">
+                  <td className="table-body-col">{item.name}</td>
+                  <td className="table-body-col text-right">{item.score}</td>
+                  <td className="table-body-col text-right">{item.time}</td>
                 </tr>
               ))}
             </tbody>
